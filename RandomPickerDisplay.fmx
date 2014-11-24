@@ -254,8 +254,6 @@ object Form6: TForm6
     TabOrder = 4
     Columns = 4
     DisableFocusEffect = True
-    Items.Strings = (
-      '000')
     DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
     DefaultItemStyles.GroupHeaderStyle = ''
     DefaultItemStyles.GroupFooterStyle = ''
