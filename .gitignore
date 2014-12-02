@@ -58,6 +58,8 @@ Release/
 Debug/
 Entitlement.*.*
 
+.svn/
+
 # =========================
 # Operating System Files
 # =========================
@@ -104,6 +106,9 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+#Random files
 *.deployproj
 *.stat
+AndroidManifest.template.xml\
 AndroidManifest.template.xml
