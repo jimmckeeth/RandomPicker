@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Ani, FMX.Objects, FMX.Edit, FMX.Layouts, FMX.ListBox,
-  FMX.Controls.Presentation, FMX.EditBox, FMX.SpinBox;
+  FMX.Controls.Presentation, FMX.EditBox, FMX.SpinBox, FMX.Gestures;
 
 type
   TForm6 = class(TForm)
@@ -31,14 +31,18 @@ type
     LineSecond: TLine;
     Button1: TButton;
     Timer1: TTimer;
-    maxValue: TSpinBox;
-    Label1: TLabel;
     ToolBar1: TToolBar;
     Label2: TLabel;
-    Label3: TLabel;
-    SpeedButton1: TSpeedButton;
-    StyleBook1: TStyleBook;
     lbHistory: TListBox;
+    Layout1: TLayout;
+    Label1: TLabel;
+    maxValue: TSpinBox;
+    Layout2: TLayout;
+    SpeedButton1: TSpeedButton;
+    Label3: TLabel;
+    SpeedButton2: TSpeedButton;
+    GestureManager1: TGestureManager;
+    Layout3: TLayout;
     procedure Button1Click(Sender: TObject);
     procedure FloatAnimation1Finish(Sender: TObject);
     procedure FloatAnimation1Process(Sender: TObject);
@@ -46,14 +50,19 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
+      var Handled: Boolean);
   private
     { Private declarations }
+    spinning: Boolean;
     MagicNumber: String;
     locked1, locked2, locked3: TFloatAnimation;
     function FindCompliment(Animation: TFloatAnimation): TFloatAnimation;
     procedure LockNumber(var Animation, Compliment: TFloatAnimation);
     function FindLabel(idx: Integer): TLabel;
-    procedure Spin;
+    procedure JustSpin;
+    procedure FullSpin;
   public
     { Public declarations }
   end;
@@ -64,6 +73,8 @@ var
 implementation
 
 {$R *.fmx}
+
+uses StyleBookDM;
 
 const
 {$IFdef NEXTGEN}
@@ -78,14 +89,7 @@ const
 
 procedure TForm6.Button1Click(Sender: TObject);
 begin
-  MagicNumber := '';
-
-  Spin;
-
-  repeat
-    MagicNumber := Format('%.3d', [Random(Round(maxValue.Value)) + 1]);
-  until (lbHistory.Items.Count >= maxValue.Value) or (lbHistory.Items.IndexOf(
-     MagicNumber) = -1);
+  FullSpin;
 end;
 
 procedure TForm6.FloatAnimation1Finish(Sender: TObject);
@@ -180,9 +184,15 @@ begin
   Locked3 := FloatAnimation3;
 end;
 
+procedure TForm6.FormGesture(Sender: TObject;
+  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+begin
+  FullSpin;
+end;
+
 procedure TForm6.FormShow(Sender: TObject);
 begin
-  Spin;
+  JustSpin;
   MagicNumber := '000';
 end;
 
@@ -191,6 +201,7 @@ begin
   Timer1.Enabled := False;
   if (Locked3 <> nil) then
   begin
+    spinning := False;
     Button1.Visible := True;
     if (MagicNumber <> '000')  then
       lbHistory.Items.Add(MagicNumber);
@@ -227,8 +238,15 @@ begin
   lbHistory.Clear;
 end;
 
-procedure TForm6.Spin;
+procedure TForm6.SpeedButton2Click(Sender: TObject);
 begin
+  StyleBook := dmStyleBooks.NextStyleBook;
+end;
+
+procedure TForm6.JustSpin;
+begin
+  if spinning then exit;
+  spinning := True;
   Button1.Visible := False;
   Timer1.Enabled := True;
   FloatAnimation1.Delay := 0;
@@ -261,6 +279,15 @@ begin
   FloatAnimation4.Start;
   FloatAnimation5.Start;
   FloatAnimation6.Start;
+end;
+
+procedure TForm6.FullSpin;
+begin
+  MagicNumber := '';
+  JustSpin;
+  repeat
+    MagicNumber := Format('%.3d', [Random(Round(maxValue.Value)) + 1]);
+  until (lbHistory.Items.Count >= maxValue.Value) or (lbHistory.Items.IndexOf(MagicNumber) = -1);
 end;
 
 procedure TForm6.LockNumber(var Animation, Compliment: TFloatAnimation);

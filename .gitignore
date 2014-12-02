@@ -53,6 +53,11 @@
 __history/
 *.~*
 
+#NextGen Compiler
+Release/
+Debug/
+Entitlement.*.*
+
 # =========================
 # Operating System Files
 # =========================
@@ -100,3 +105,4 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.deployproj
+*.stat
