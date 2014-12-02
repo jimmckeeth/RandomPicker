@@ -40,7 +40,6 @@ type
     Layout2: TLayout;
     SpeedButton1: TSpeedButton;
     Label3: TLabel;
-    SpeedButton2: TSpeedButton;
     GestureManager1: TGestureManager;
     Layout3: TLayout;
     procedure Button1Click(Sender: TObject);
@@ -50,7 +49,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
       var Handled: Boolean);
   private
@@ -236,11 +234,6 @@ end;
 procedure TForm6.SpeedButton1Click(Sender: TObject);
 begin
   lbHistory.Clear;
-end;
-
-procedure TForm6.SpeedButton2Click(Sender: TObject);
-begin
-  StyleBook := dmStyleBooks.NextStyleBook;
 end;
 
 procedure TForm6.JustSpin;

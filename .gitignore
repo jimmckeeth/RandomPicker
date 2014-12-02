@@ -106,3 +106,4 @@ $RECYCLE.BIN/
 *.msp
 *.deployproj
 *.stat
+AndroidManifest.template.xml

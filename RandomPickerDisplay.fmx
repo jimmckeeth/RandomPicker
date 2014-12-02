@@ -4,7 +4,7 @@ object Form6: TForm6
   Caption = 'Random Picker'
   ClientHeight = 488
   ClientWidth = 294
-  StyleBook = dmStyleBooks.sbTransparent
+  StyleBook = dmStyleBooks.sbLight
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -286,16 +286,6 @@ object Form6: TForm6
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Center
       Text = 'Random Picker'
-    end
-    object SpeedButton2: TSpeedButton
-      Align = Right
-      Position.X = 246.000000000000000000
-      Size.Width = 48.000000000000000000
-      Size.Height = 48.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'refreshtoolbutton'
-      Text = 'SpeedButton2'
-      OnClick = SpeedButton2Click
     end
   end
   object Layout2: TLayout
