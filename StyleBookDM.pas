@@ -3,11 +3,12 @@ unit StyleBookDM;
 interface
 
 uses
-  System.SysUtils, System.Classes, FMX.Types, FMX.Controls,
-  System.Generics.Collections;
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  System.Generics.Collections, FMX.StdCtrls;
 
 type
-  TdmStyleBooks = class(TDataModule)
+  TdmStyleBooks = class(TForm)
     sbAmakrits: TStyleBook;
     sbAir: TStyleBook;
     sbBlend: TStyleBook;
@@ -17,7 +18,8 @@ type
     sbDark: TStyleBook;
     sbRubyGraphite: TStyleBook;
     sbTransparent: TStyleBook;
-    procedure DataModuleCreate(Sender: TObject);
+    Label1: TLabel;
+    procedure FormCreate(Sender: TObject);
   private
     sbList: TObjectList<TStyleBook>;
     idx: Integer;
@@ -33,11 +35,9 @@ var
 
 implementation
 
-{%CLASSGROUP 'FMX.Controls.TControl'}
+{$R *.fmx}
 
-{$R *.dfm}
-
-procedure TdmStyleBooks.DataModuleCreate(Sender: TObject);
+procedure TdmStyleBooks.FormCreate(Sender: TObject);
 var
   x: Integer;
 begin

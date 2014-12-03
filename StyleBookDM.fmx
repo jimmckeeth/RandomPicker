@@ -1,8 +1,14 @@
 object dmStyleBooks: TdmStyleBooks
-  OldCreateOrder = False
-  OnCreate = DataModuleCreate
-  Height = 250
-  Width = 363
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 322
+  ClientWidth = 322
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
   object sbAmakrits: TStyleBook
     Left = 16
     Top = 72
@@ -35058,5 +35064,13 @@ object dmStyleBooks: TdmStyleBooks
       77436F6C6F720708636C615768697465074F7061636974790500000000000000
       80FF3F0754726967676572060E4973507265737365643D7472756507456E6162
       6C65640800000000}
+  end
+  object Label1: TLabel
+    Position.X = 200.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 73.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Pretend this is a data module'
   end
 end

@@ -4,7 +4,7 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   RandomPickerDisplay in 'RandomPickerDisplay.pas' {Form6},
-  StyleBookDM in 'StyleBookDM.pas' {dmStyleBooks: TDataModule};
+  StyleBookDM in 'StyleBookDM.pas' {dmStyleBooks};
 
 {$R *.res}
 
