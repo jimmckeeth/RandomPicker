@@ -1,10 +1,10 @@
-object Form6: TForm6
+object PickerForm: TPickerForm
   Left = 0
   Top = 0
   Caption = 'Random Picker'
   ClientHeight = 488
   ClientWidth = 294
-  StyleBook = Form1.sbLight
+  StyleBook = dmStyleBooks.sbAquaGraphite
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]

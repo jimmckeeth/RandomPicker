@@ -10,7 +10,7 @@ uses
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm6, Form6);
+  Application.CreateForm(TPickerForm, PickerForm);
   Application.CreateForm(TdmStyleBooks, dmStyleBooks);
   Application.Run;
 end.

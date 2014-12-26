@@ -9,7 +9,7 @@ uses
   FMX.Controls.Presentation, FMX.EditBox, FMX.SpinBox, FMX.Gestures;
 
 type
-  TForm6 = class(TForm)
+  TPickerForm = class(TForm)
     Panel1: TPanel;
     lblNum3: TLabel;
     lblNum2: TLabel;
@@ -66,7 +66,7 @@ type
   end;
 
 var
-  Form6: TForm6;
+  PickerForm: TPickerForm;
 
 implementation
 
@@ -85,12 +85,12 @@ const
   cPos3 = 3;
 {$ENDIF}
 
-procedure TForm6.Button1Click(Sender: TObject);
+procedure TPickerForm.Button1Click(Sender: TObject);
 begin
   FullSpin;
 end;
 
-procedure TForm6.FloatAnimation1Finish(Sender: TObject);
+procedure TPickerForm.FloatAnimation1Finish(Sender: TObject);
 var
   Animation: TFloatAnimation;
   Compliment: TFloatAnimation;
@@ -118,7 +118,7 @@ begin
     Compliment.Stop;
 end;
 
-procedure TForm6.FloatAnimation1Process(Sender: TObject);
+procedure TPickerForm.FloatAnimation1Process(Sender: TObject);
 var
   Animation: TFloatAnimation;
   Compliment: TFloatAnimation;
@@ -174,7 +174,7 @@ begin
 
 end;
 
-procedure TForm6.FormCreate(Sender: TObject);
+procedure TPickerForm.FormCreate(Sender: TObject);
 begin
   Randomize;
   Locked1 := FloatAnimation1;
@@ -182,19 +182,19 @@ begin
   Locked3 := FloatAnimation3;
 end;
 
-procedure TForm6.FormGesture(Sender: TObject;
+procedure TPickerForm.FormGesture(Sender: TObject;
   const EventInfo: TGestureEventInfo; var Handled: Boolean);
 begin
   FullSpin;
 end;
 
-procedure TForm6.FormShow(Sender: TObject);
+procedure TPickerForm.FormShow(Sender: TObject);
 begin
   JustSpin;
   MagicNumber := '000';
 end;
 
-procedure TForm6.Timer1Timer(Sender: TObject);
+procedure TPickerForm.Timer1Timer(Sender: TObject);
 begin
   Timer1.Enabled := False;
   if (Locked3 <> nil) then
@@ -206,7 +206,7 @@ begin
   end;
 end;
 
-function TForm6.FindCompliment(Animation: TFloatAnimation): TFloatAnimation;
+function TPickerForm.FindCompliment(Animation: TFloatAnimation): TFloatAnimation;
 begin
   case Animation.Tag of
     1: Result := FloatAnimation4;
@@ -218,7 +218,7 @@ begin
   end;
 end;
 
-function TForm6.FindLabel(idx: Integer): TLabel;
+function TPickerForm.FindLabel(idx: Integer): TLabel;
 begin
   case idx of
     1 : Result := lblNum1;
@@ -231,12 +231,12 @@ begin
 
 end;
 
-procedure TForm6.SpeedButton1Click(Sender: TObject);
+procedure TPickerForm.SpeedButton1Click(Sender: TObject);
 begin
   lbHistory.Clear;
 end;
 
-procedure TForm6.JustSpin;
+procedure TPickerForm.JustSpin;
 begin
   if spinning then exit;
   spinning := True;
@@ -274,7 +274,7 @@ begin
   FloatAnimation6.Start;
 end;
 
-procedure TForm6.FullSpin;
+procedure TPickerForm.FullSpin;
 begin
   MagicNumber := '';
   JustSpin;
@@ -283,7 +283,7 @@ begin
   until (lbHistory.Items.Count >= maxValue.Value) or (lbHistory.Items.IndexOf(MagicNumber) = -1);
 end;
 
-procedure TForm6.LockNumber(var Animation, Compliment: TFloatAnimation);
+procedure TPickerForm.LockNumber(var Animation, Compliment: TFloatAnimation);
 begin
   //Animation.Stop;
   //Compliment.Duration := Compliment.Duration / 2;
